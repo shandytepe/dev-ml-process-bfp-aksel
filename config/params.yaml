@@ -1,0 +1,57 @@
+dataset_filename: house_price.csv
+dataset_dump_path: 
+  raw: data/raw/
+  interim: data/interim/
+  processed: data/processed/
+target_col: price
+int64_columns:
+# - price
+- area
+- bedrooms
+- bathrooms
+- stories
+- parking
+object_columns:
+- mainroad
+- guestroom
+- basement
+- hotwaterheating
+- airconditioning
+- prefarea
+- furnishingstatus
+value_status:
+- "yes"
+- "no"
+value_furnish_status:
+- "furnished"
+- "semi-furnished"
+- "unfurnished"
+label_encoder_columns:
+- mainroad
+- guestroom
+- basement
+- hotwaterheating
+- airconditioning
+- prefarea
+ohe_columns:
+- furnishingstatus
+feature_num_columns:
+- area
+- bedrooms
+- bathrooms
+- stories
+- parking
+model_dump_path: models/
+features:
+- area
+- bedrooms
+- bathrooms
+- stories
+- parking
+- mainroad
+- guestroom
+- basement
+- hotwaterheating
+- airconditioning
+- prefarea
+- furnishingstatus
