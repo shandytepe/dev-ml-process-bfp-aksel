@@ -40,11 +40,9 @@ def predict(data: APIData):
     # Convert input data to DataFrame
     df_data = pd.DataFrame([data.dict()])
  
-    # validate using data checker
+    # Validate using data checker
     try:
-        data_defense_checker(input_data = df_data,
-                             params = params)
-        
+        data_defense_checker(input_data=df_data, params=params)
     except AssertionError as ae:
         return {
             "res": [],
@@ -52,22 +50,23 @@ def predict(data: APIData):
             "status_code": 400
         }
         
-    # if valid preprocess the data
-    df_data = preprocess_process(data = df_data, params = params)
+    # If valid, preprocess the data
+    df_data = preprocess_process(data=df_data, params=params)
     
-    # predict the input data
+    # Predict the input data
     y_pred = best_model.predict(df_data)
     
     if y_pred[0] is None:
-        msg = "Failed API"
-        
-    else:
-        msg = "Found API"
-        
-        result = {
-            "res": msg,
-            "house_price_prediction": y_pred[0],
-            "status_code": 200
+        return {
+            "res": "Failed API",
+            "house_price_prediction": None,
+            "status_code": 500,
+            "error_msg": "Prediction returned None."
         }
         
-        return result
+    return {
+        "res": "Found API",
+        "house_price_prediction": y_pred[0],
+        "status_code": 200,
+        "error_msg": ""
+    }
