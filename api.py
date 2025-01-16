@@ -7,7 +7,7 @@ from src.preprocessing.preprocess import preprocess_process
 
 
 params = load_params(param_dir = "config/params.yaml")
-best_model = load_joblib(path = params["model_dump_path"] + "lasso_best_model.pkl")
+best_model = load_joblib(path = params["model_dump_path"] + "lasso_best_model_v2.pkl")
 
 app = FastAPI()
 
